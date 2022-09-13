@@ -59,13 +59,23 @@ namespace PmcReader
                             dfLabelOverride = "Power Control Unit Monitoring Configs (pick one):";
                         }
                     }
-                    else if ((cpuModel & 0xF) == 0xE)
+                    else if (cpuModel == 0x4E || cpuModel == 0x5E || cpuModel == 0x55)
                     {
                         coreMonitoring.monitoringArea = new Intel.Skylake();
                         l3Monitoring.monitoringArea = new Intel.SkylakeClientL3();
                         dfMonitoring.monitoringArea = new Intel.SkylakeClientArb();
                         dfLabelOverride = "System Agent Monitoring Configs (pick one):";
 ;                    }
+                    else if (cpuModel == 0x9A || cpuModel == 0x97)
+                    {
+                        
+           
+                        coreMonitoring.monitoringArea = new Intel.AlderLake();
+                        l3Monitoring.monitoringArea = new Intel.AlderLakeL3();
+                        dfMonitoring.monitoringArea = new Intel.AlderLakeArb();
+                        dfLabelOverride = "System Agent Monitoring Configs (pick one):";
+
+                    }
                     else
                     {
                         coreMonitoring.monitoringArea = new Intel.ModernIntelCpu();
